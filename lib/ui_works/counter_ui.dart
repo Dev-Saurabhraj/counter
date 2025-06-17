@@ -12,11 +12,8 @@ class CounterUi extends StatefulWidget {
 }
 
 class _CounterUiState extends State<CounterUi> {
-
-
   @override
   Widget build(BuildContext context) {
-
     final counterBloc = BlocProvider.of<CounterBloc>(context);
 
     return Scaffold(
@@ -32,12 +29,14 @@ class _CounterUiState extends State<CounterUi> {
             ),
             SizedBox(height: 100),
 
-            BlocBuilder<CounterBloc, CounterState>(builder: (context , state) {
-              return Text(
-                '${state.count}',
-                style: TextStyle(fontSize: 60, fontWeight: FontWeight.bold),
-              );
-            }),
+            BlocBuilder<CounterBloc, CounterState>(
+              builder: (context, state) {
+                return Text(
+                  '${state.count}',
+                  style: TextStyle(fontSize: 60, fontWeight: FontWeight.bold),
+                );
+              },
+            ),
 
             SizedBox(height: 100),
 
@@ -54,25 +53,40 @@ class _CounterUiState extends State<CounterUi> {
                         height: 40,
                         width: 80,
                         decoration: BoxDecoration(
-                          color: state.count >=5? Colors.grey: Colors.blueAccent,
+                          color: state.count >= 5
+                              ? Colors.grey
+                              : Colors.blueAccent,
                           gradient: LinearGradient(
-                            colors: [state.count >=5  ? Colors.grey: Colors.blue.shade500, state.count >=5  ? Colors.grey: Colors.blue.shade700],
+                            colors: [
+                              state.count >= 5
+                                  ? Colors.grey
+                                  : Colors.blue.shade500,
+                              state.count >= 5
+                                  ? Colors.grey
+                                  : Colors.blue.shade700,
+                            ],
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                           ),
                           borderRadius: BorderRadius.circular(10),
                           boxShadow: [
                             BoxShadow(
-                              color: state.count >=5  ? Colors.grey: Colors.blue,
+                              color: state.count >= 5
+                                  ? Colors.grey
+                                  : Colors.blue,
                               blurRadius: 10,
                               spreadRadius: 1,
                               offset: Offset(0, 3),
                             ),
                           ],
                         ),
-                        child: Icon(Icons.add, color: state.count >=5 ? Colors.black: Colors.white, size: 40),
+                        child: Icon(
+                          Icons.add,
+                          color: state.count >= 5 ? Colors.black : Colors.white,
+                          size: 40,
+                        ),
                       );
-                    }
+                    },
                   ),
                 ),
                 SizedBox(width: 50),
@@ -86,25 +100,40 @@ class _CounterUiState extends State<CounterUi> {
                         height: 40,
                         width: 80,
                         decoration: BoxDecoration(
-                          color: state.count <= 0? Colors.grey: Colors.blueAccent,
+                          color: state.count <= 0
+                              ? Colors.grey
+                              : Colors.blueAccent,
                           gradient: LinearGradient(
-                            colors: [state.count <= 0 ? Colors.grey: Colors.blue.shade500,state.count <= 0? Colors.grey: Colors.blue.shade700],
+                            colors: [
+                              state.count <= 0
+                                  ? Colors.grey
+                                  : Colors.blue.shade500,
+                              state.count <= 0
+                                  ? Colors.grey
+                                  : Colors.blue.shade700,
+                            ],
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                           ),
                           borderRadius: BorderRadius.circular(10),
                           boxShadow: [
                             BoxShadow(
-                              color: state.count <= 0 ? Colors.grey: Colors.blue,
+                              color: state.count <= 0
+                                  ? Colors.grey
+                                  : Colors.blue,
                               blurRadius: 10,
                               spreadRadius: 1,
                               offset: Offset(0, 3),
                             ),
                           ],
                         ),
-                        child: Icon(Icons.remove, color: state.count <= 0? Colors.black: Colors.white, size: 40),
+                        child: Icon(
+                          Icons.remove,
+                          color: state.count <= 0 ? Colors.black : Colors.white,
+                          size: 40,
+                        ),
                       );
-                    }
+                    },
                   ),
                 ),
               ],
