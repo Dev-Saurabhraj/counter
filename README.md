@@ -1,7 +1,7 @@
 # counter
 
 A new Flutter project.
-counte example using bloc statemanagement 
+counter example using bloc statemanagement 
 i have restricted this counter 0 to 5 range.
 
 ## Getting Started
