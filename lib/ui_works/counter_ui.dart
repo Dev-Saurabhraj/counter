@@ -1,4 +1,8 @@
+import 'package:counter/Bloc/counter_bloc.dart';
+import 'package:counter/Bloc/counter_event.dart';
+import 'package:counter/Bloc/counter_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CounterUi extends StatefulWidget {
   const CounterUi({super.key});
@@ -8,8 +12,13 @@ class CounterUi extends StatefulWidget {
 }
 
 class _CounterUiState extends State<CounterUi> {
+
+
   @override
   Widget build(BuildContext context) {
+
+    final counterBloc = BlocProvider.of<CounterBloc>(context);
+
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(color: Colors.white60),
@@ -22,10 +31,14 @@ class _CounterUiState extends State<CounterUi> {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 100),
-            Text(
-              '0',
-              style: TextStyle(fontSize: 60, fontWeight: FontWeight.bold),
-            ),
+
+            BlocBuilder<CounterBloc, CounterState>(builder: (context , state) {
+              return Text(
+                '${state.count}',
+                style: TextStyle(fontSize: 60, fontWeight: FontWeight.bold),
+              );
+            }),
+
             SizedBox(height: 100),
 
             Row(
@@ -34,7 +47,7 @@ class _CounterUiState extends State<CounterUi> {
               children: [
                 InkWell(
                   splashColor: Colors.white,
-                  onTap: () {},
+                  onTap: () => counterBloc.add(IncrementEvent()),
                   child: Container(
                     height: 40,
                     width: 80,
@@ -62,7 +75,7 @@ class _CounterUiState extends State<CounterUi> {
                 InkWell(
                   splashColor: Colors.white,
 
-                  onTap: () {},
+                  onTap: () => counterBloc.add(DecrementEvent()),
                   child: Container(
                     height: 40,
                     width: 80,
