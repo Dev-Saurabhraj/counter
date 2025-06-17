@@ -48,27 +48,31 @@ class _CounterUiState extends State<CounterUi> {
                 InkWell(
                   splashColor: Colors.white,
                   onTap: () => counterBloc.add(IncrementEvent()),
-                  child: Container(
-                    height: 40,
-                    width: 80,
-                    decoration: BoxDecoration(
-                      color: Colors.blueAccent,
-                      gradient: LinearGradient(
-                        colors: [Colors.blue.shade500, Colors.blue.shade700],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                      ),
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.blue,
-                          blurRadius: 10,
-                          spreadRadius: 1,
-                          offset: Offset(0, 3),
+                  child: BlocBuilder<CounterBloc, CounterState>(
+                    builder: (context, state) {
+                      return Container(
+                        height: 40,
+                        width: 80,
+                        decoration: BoxDecoration(
+                          color: state.count >=5? Colors.grey: Colors.blueAccent,
+                          gradient: LinearGradient(
+                            colors: [state.count >=5  ? Colors.grey: Colors.blue.shade500, state.count >=5  ? Colors.grey: Colors.blue.shade700],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                              color: state.count >=5  ? Colors.grey: Colors.blue,
+                              blurRadius: 10,
+                              spreadRadius: 1,
+                              offset: Offset(0, 3),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                    child: Icon(Icons.add, color: Colors.white, size: 40),
+                        child: Icon(Icons.add, color: state.count >=5 ? Colors.black: Colors.white, size: 40),
+                      );
+                    }
                   ),
                 ),
                 SizedBox(width: 50),
@@ -76,27 +80,31 @@ class _CounterUiState extends State<CounterUi> {
                   splashColor: Colors.white,
 
                   onTap: () => counterBloc.add(DecrementEvent()),
-                  child: Container(
-                    height: 40,
-                    width: 80,
-                    decoration: BoxDecoration(
-                      color: Colors.blueAccent,
-                      gradient: LinearGradient(
-                        colors: [Colors.blue.shade500, Colors.blue.shade700],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                      ),
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.blue,
-                          blurRadius: 10,
-                          spreadRadius: 1,
-                          offset: Offset(0, 3),
+                  child: BlocBuilder<CounterBloc, CounterState>(
+                    builder: (context, state) {
+                      return Container(
+                        height: 40,
+                        width: 80,
+                        decoration: BoxDecoration(
+                          color: state.count <= 0? Colors.grey: Colors.blueAccent,
+                          gradient: LinearGradient(
+                            colors: [state.count <= 0 ? Colors.grey: Colors.blue.shade500,state.count <= 0? Colors.grey: Colors.blue.shade700],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                              color: state.count <= 0 ? Colors.grey: Colors.blue,
+                              blurRadius: 10,
+                              spreadRadius: 1,
+                              offset: Offset(0, 3),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                    child: Icon(Icons.remove, color: Colors.white, size: 40),
+                        child: Icon(Icons.remove, color: state.count <= 0? Colors.black: Colors.white, size: 40),
+                      );
+                    }
                   ),
                 ),
               ],
